@@ -1,0 +1,388 @@
+/* ============================================================
+   YouTube AI Summarizer – Popup Styles
+   Two-tone Dark / Light theme with CSS custom properties
+   ============================================================ */
+
+/* ---------- Google Font (Inter) ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ============================================================
+   1. DESIGN TOKENS  (custom properties on :root / .light)
+   ============================================================ */
+
+/* ---------- DARK THEME (default) ---------- */
+:root {
+  /* Surface / Background */
+  --bg-primary:        #101014;
+  --bg-secondary:      #1a1a22;
+  --bg-card:           #1e1e28;
+  --bg-card-hover:     #26263280;
+
+  /* Text */
+  --text-primary:      #e8e8ed;
+  --text-secondary:    #a0a0b0;
+  --text-muted:        #6a6a7d;
+
+  /* Accent – a cool cyan-blue highlight */
+  --accent:            #5eead4;
+  --accent-dim:        #2dd4b020;
+  --accent-hover:      #6ff7e2;
+
+  /* Borders & Dividers */
+  --border:            #2a2a38;
+  --border-subtle:     #22222e;
+
+  /* Button */
+  --btn-bg:            linear-gradient(135deg, #5eead4 0%, #38bdf8 100%);
+  --btn-text:          #0e0e12;
+  --btn-shadow:        0 4px 20px rgba(94, 234, 212, .25);
+  --btn-hover-shadow:  0 6px 28px rgba(94, 234, 212, .40);
+
+  /* Scrollbar */
+  --scrollbar-track:   #15151c;
+  --scrollbar-thumb:   #2e2e3e;
+
+  /* Misc */
+  --radius:            12px;
+  --radius-sm:         8px;
+  --transition:        .25s cubic-bezier(.4,0,.2,1);
+}
+
+/* ---------- LIGHT THEME ---------- */
+.light {
+  --bg-primary:        #f4f4f8;
+  --bg-secondary:      #ebebf0;
+  --bg-card:           #ffffff;
+  --bg-card-hover:     #f0f0f5;
+
+  --text-primary:      #1a1a2e;
+  --text-secondary:    #52526a;
+  --text-muted:        #8888a0;
+
+  --accent:            #6366f1;
+  --accent-dim:        #6366f115;
+  --accent-hover:      #818cf8;
+
+  --border:            #d8d8e4;
+  --border-subtle:     #e4e4ee;
+
+  --btn-bg:            linear-gradient(135deg, #6366f1 0%, #a78bfa 100%);
+  --btn-text:          #ffffff;
+  --btn-shadow:        0 4px 20px rgba(99, 102, 241, .25);
+  --btn-hover-shadow:  0 6px 28px rgba(99, 102, 241, .40);
+
+  --scrollbar-track:   #ebebf0;
+  --scrollbar-thumb:   #c4c4d4;
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  width: 380px;
+  min-height: 520px;
+  max-height: 600px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  transition: background var(--transition), color var(--transition);
+}
+
+
+/* ============================================================
+   3. SCROLLABLE MAIN CONTAINER
+   ============================================================ */
+
+.main-container {
+  width: 100%;
+  height: 100vh;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 22px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+.main-container::-webkit-scrollbar {
+  width: 6px;
+}
+.main-container::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+.main-container::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+
+
+/* ============================================================
+   4. HEADER (title + theme toggle)
+   ============================================================ */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  background: var(--btn-bg);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Theme Toggle ---------- */
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition),
+              transform .15s ease;
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent);
+  transform: scale(1.06);
+}
+.toggle-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform .35s ease;
+}
+.theme-toggle:active .toggle-icon {
+  transform: rotate(25deg) scale(.9);
+}
+
+
+/* ============================================================
+   5. META SECTION (Title / Channel)
+   ============================================================ */
+
+.meta-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.meta-line {
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.meta-label {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-right: 4px;
+}
+
+.meta-value {
+  color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   6. SUMMARIZE BUTTON
+   ============================================================ */
+
+.summarize-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-family: inherit;
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  cursor: pointer;
+  box-shadow: var(--btn-shadow);
+  transition: box-shadow var(--transition), transform .15s ease,
+              opacity var(--transition);
+}
+
+.summarize-btn:hover {
+  box-shadow: var(--btn-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.summarize-btn:active {
+  transform: translateY(0);
+}
+
+.summarize-btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- Spinner ---------- */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid transparent;
+  border-top-color: var(--btn-text);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ============================================================
+   7. SUMMARY SECTION
+   ============================================================ */
+
+.summary-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -.01em;
+}
+
+.summary-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.summary-label {
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 10px;
+}
+
+.summary-text {
+  font-size: .88rem;
+  line-height: 1.72;
+  color: var(--text-secondary);
+  white-space: pre-wrap;          /* preserve line breaks & formatting */
+  word-wrap: break-word;
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.summary-text::-webkit-scrollbar {
+  width: 4px;
+}
+.summary-text::-webkit-scrollbar-track {
+  background: transparent;
+}
+.summary-text::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+
+/* Error state */
+.summary-text.error {
+  color: #f87171;
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   8. LOADING SKELETON (shown inside summary-text while loading)
+   ============================================================ */
+
+.skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--border-subtle) 25%, var(--bg-card-hover) 50%, var(--border-subtle) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  margin-bottom: 10px;
+}
+.skeleton-line:nth-child(2) { width: 85%; }
+.skeleton-line:nth-child(3) { width: 70%; }
+.skeleton-line:nth-child(4) { width: 92%; }
+.skeleton-line:nth-child(5) { width: 60%; margin-bottom: 0; }
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+/* ============================================================
+   9. FOOTER
+   ============================================================ */
+
+.footer {
+  margin-top: auto;
+  text-align: center;
+  font-size: .72rem;
+  color: var(--text-muted);
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+  letter-spacing: .02em;
+}
+.footer strong {
+  color: var(--accent);
+}
+
+
+/* ============================================================
+   10. GLOBAL TRANSITIONS  (smooth theme switch)
+   ============================================================ */
+
+.meta-section,
+.summary-container,
+.footer {
+  transition: background var(--transition), border-color var(--transition),
+              color var(--transition);
+}

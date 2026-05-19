@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube AI Summarizer</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div id="main-container" class="main-container">
+
+    <!-- Header row: title + theme toggle -->
+    <header class="header">
+      <h1 class="app-title">YouTube Video Summarizer</h1>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="toggle-icon" id="toggle-icon">🌙</span>
+      </button>
+    </header>
+
+    <!-- Video metadata -->
+    <section class="meta-section">
+      <p class="meta-line">
+        <span class="meta-label">Title:</span>
+        <span id="video-title" class="meta-value">—</span>
+      </p>
+      <p class="meta-line">
+        <span class="meta-label">Channel Name:</span>
+        <span id="channel-name" class="meta-value">—</span>
+      </p>
+    </section>
+
+    <!-- Summarize action -->
+    <button id="summarize-btn" class="summarize-btn">
+      <span id="btn-text">Summarize Video</span>
+      <span id="btn-spinner" class="spinner hidden"></span>
+    </button>
+
+    <!-- Summary output -->
+    <section class="summary-section">
+      <h2 class="section-heading">Summary</h2>
+      <div class="summary-container">
+        <span class="summary-label">Summary Text:</span>
+        <div id="summary-text" class="summary-text">
+          Click <strong>Summarize Video</strong> to generate an AI summary of the active YouTube video.
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer branding -->
+    <footer class="footer">
+      Powered by <strong>AI</strong> &middot; YouTube Summarizer v1.0
+    </footer>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
