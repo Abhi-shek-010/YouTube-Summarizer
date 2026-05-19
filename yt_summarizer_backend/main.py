@@ -1,9 +1,19 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, HttpUrl
-from extractor import get_youtube_transcript
+from extractor import get_youtube_transcript, get_video_metadata
 from summarizer import generate_summary
 
 app = FastAPI(title="YouTube Video Summarizer AI Backend")
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = ["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 # Define the structure of data our API expects to receive via Pydantic
 class VideoRequest(BaseModel):
@@ -20,15 +30,20 @@ def summarize_video(payload: VideoRequest):
     the AI engine, and returns a comprehensive structured summary.
     """
     try:
-        # Step 1: Extract text transcript
+        # Extract text transcript
         transcript = get_youtube_transcript(payload.url)
         
-        # Step 2: Generate abstractive summary via Gemini
+        # Get video metadata (title and channel)
+        metadata = get_video_metadata(payload.url)
+        
+        # Generate abstractive summary via Gemini
         summary = generate_summary(transcript)
         
-        # Step 3: Return payload back to client
+        # Return payload back to client
         return {
             "success": True,
+            "title": metadata["title"],
+            "channel": metadata["channel"],
             "summary": summary
         }
         

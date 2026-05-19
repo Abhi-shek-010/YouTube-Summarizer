@@ -1,4 +1,6 @@
 import re
+import urllib.request
+import json
 from youtube_transcript_api import YouTubeTranscriptApi
 
 def extract_video_id(url: str) -> str:
@@ -30,3 +32,18 @@ def get_youtube_transcript(url: str) -> str:
         
     except Exception as e:
         raise RuntimeError(f"Could not retrieve transcript: {str(e)}")
+
+def get_video_metadata(url: str) -> dict:
+    """
+    Fetches the video title and channel name using YouTube's oEmbed API.
+    """
+    oembed_url = f"https://www.youtube.com/oembed?url={url}&format=json"
+    try:
+        with urllib.request.urlopen(oembed_url) as response:
+            data = json.loads(response.read().decode())
+            return {
+                "title": data.get("title", "Unknown Title"),
+                "channel": data.get("author_name", "Unknown Channel")
+            }
+    except Exception:
+        return {"title": "Unknown Title", "channel": "Unknown Channel"}

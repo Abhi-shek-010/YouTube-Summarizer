@@ -13,10 +13,13 @@ def generate_summary(transcript_text: str) -> str:
     Sends the transcript text to Gemini and asks for a structured summary.
     """
     prompt = (
-        "You are an expert content summarizer. Analyze the following YouTube video transcript "
-        "and provide a highly structured summary. Use an overview paragraph, followed by bullet points "
-        "highlighting key takeaways, actionable insights, and core conclusions.\n\n"
-        f"Transcript:\n{transcript_text}"
+        "You are an expert executive summarizer. Read the following YouTube transcript "
+        "and provide a brutally concise summary. "
+        "Strict constraints: "
+        "1. Provide exactly one short overview sentence. "
+        "2. Provide exactly 3 bullet points of the core takeaways. "
+        "3. Do NOT exceed 100 words total. "
+        f"\n\nTranscript:\n{transcript_text}"
     )
     
     try:
