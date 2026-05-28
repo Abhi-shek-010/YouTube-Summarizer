@@ -16,9 +16,9 @@ def generate_summary(transcript_text: str) -> str:
         "You are an expert executive summarizer. Read the following YouTube transcript "
         "and provide a brutally concise summary. "
         "Strict constraints: "
-        "1. Provide exactly one short overview sentence. "
-        "2. Provide exactly 3 bullet points of the core takeaways. "
-        "3. Do NOT exceed 100 words total. "
+        "1. Provide short overview sentence. "
+        "2. Provide some bullet points of the core takeaways. "
+        "3. Do NOT exceed 200-250 words in total. "
         f"\n\nTranscript:\n{transcript_text}"
     )
     
