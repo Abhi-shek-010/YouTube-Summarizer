@@ -15,7 +15,7 @@
   const channelName  = document.getElementById('channel-name');
   const summaryText  = document.getElementById('summary-text');
 
-  const API_ENDPOINT = 'https://youtube-summarizer-zdzw.onrender.com/api/summarize';
+  const API_ENDPOINT = '127.0.0.1';
 
   // ── Theme Management ─────────────────────────────────────
   function applyTheme(theme) {
