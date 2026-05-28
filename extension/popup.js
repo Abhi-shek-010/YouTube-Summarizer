@@ -15,7 +15,7 @@
   const channelName  = document.getElementById('channel-name');
   const summaryText  = document.getElementById('summary-text');
 
-  const API_ENDPOINT = '127.0.0.1';
+  const API_ENDPOINT = 'http://127.0.0.1:8000/api/summarize';
 
   // ── Theme Management ─────────────────────────────────────
   function applyTheme(theme) {
