@@ -1,6 +1,6 @@
 # YouTube AI Summarizer
 
-An AI-powered Chrome/Edge extension that generates structured summaries of YouTube videos using Google's Gemini API.
+An AI-powered Chrome/Edge extension that generates well-structured summaries of YouTube videos using Google's Gemini API.
 
 ## Project Structure
 
